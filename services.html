@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Professional Web Design & Development | KOVO DESIGN</title>
+    <meta name="description" content="Explore our web design services: Business Websites, E-commerce Solutions, and Website Modernization. Transparent pricing and proven results.">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Services-specific styles */
+        .service-detail {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .service-detail h3 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding: 1rem;
+            margin: -1rem;
+            margin-bottom: 0;
+            border-radius: var(--radius-md);
+            transition: all var(--transition-normal);
+        }
+
+        .service-detail h3:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .service-detail h3::after {
+            content: '+';
+            font-size: 2rem;
+            font-weight: 300;
+            transition: transform var(--transition-normal);
+        }
+
+        .service-detail.active h3::after {
+            transform: rotate(45deg);
+        }
+
+        .service-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .service-detail.active .service-content {
+            max-height: 2000px;
+            opacity: 1;
+            margin-top: var(--spacing-md);
+        }
+
+        .included-list {
+            list-style: none;
+            margin: var(--spacing-md) 0;
+        }
+
+        .included-list li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .included-list li:last-child {
+            border-bottom: none;
+        }
+
+        .included-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue);
+            font-weight: bold;
+            font-size: 1.25rem;
+        }
+
+        .pricing-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            text-align: center;
+            transition: all var(--transition-normal);
+        }
+
+        .pricing-card:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--accent-blue);
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 1rem 0;
+        }
+
+        .accordion-item {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all var(--transition-normal);
+        }
+
+        .accordion-header:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .accordion-header h4 {
+            margin: 0;
+            font-size: 1.125rem;
+        }
+
+        .accordion-icon {
+            font-size: 1.5rem;
+            transition: transform var(--transition-normal);
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0 1.5rem;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 1000px;
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        .faq-item {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+        }
+
+        .faq-question {
+            padding: 1.25rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: all var(--transition-normal);
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            padding: 0 1.25rem;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 1.25rem 1.25rem;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(180deg);
+        }
+
+        .faq-question::after {
+            content: '▼';
+            font-size: 0.875rem;
+            transition: transform var(--transition-normal);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <nav class="container">
+            <div class="logo">KOVO DESIGN</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html" class="btn btn-primary">Get Started</a></li>
+            </ul>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="section" style="padding-top: 150px; text-align: center;">
+        <div class="container">
+            <h1 class="fade-in-up">Our Services</h1>
+            <p class="fade-in-up" style="font-size: 1.25rem; max-width: 700px; margin: 0 auto; animation-delay: 0.1s;">
+                Comprehensive web solutions designed to help your business succeed online
+            </p>
+        </div>
+    </section>
+
+    <!-- Services Overview -->
+    <section class="section">
+        <div class="container">
+            <div class="grid grid-3">
+                <div class="glass-card text-center reveal">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">💼</div>
+                    <h3>Business Websites</h3>
+                    <p>Professional online presence for established businesses and service providers.</p>
+                </div>
+                <div class="glass-card text-center reveal">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🛒</div>
+                    <h3>E-commerce Solutions</h3>
+                    <p>Complete online stores ready to sell products and manage inventory.</p>
+                </div>
+                <div class="glass-card text-center reveal">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🔄</div>
+                    <h3>Website Modernization</h3>
+                    <p>Transform outdated websites into modern, high-performing assets.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Services -->
+    <section class="section" style="background: rgba(0, 0, 0, 0.2); padding: 4rem 0;">
+        <div class="container">
+            <div class="text-center mb-lg reveal">
+                <h2>Service Details</h2>
+                <p style="font-size: 1.125rem;">Click each service to learn more</p>
+            </div>
+
+            <div style="max-width: 900px; margin: 0 auto;">
+                <!-- Business Websites -->
+                <div class="service-detail reveal">
+                    <h3>
+                        <span>Business Website Design</span>
+                    </h3>
+                    <div class="service-content">
+                        <p style="font-size: 1.125rem; margin: 1rem 0;">
+                            Perfect for established businesses, consultants, and professional service providers who need
+                            a credible online presence that generates leads and builds trust with potential clients.
+                        </p>
+
+                        <div style="background: rgba(59, 130, 246, 0.1); padding: 1.5rem; border-radius: 0.5rem; margin: 1.5rem 0;">
+                            <div class="price">$2,500 - $5,000</div>
+                            <p style="color: var(--text-secondary);">Typical project: 4-6 weeks</p>
+                        </div>
+
+                        <h4 style="margin-top: 1.5rem; margin-bottom: 1rem;">What's Included:</h4>
+                        <ul class="included-list">
+                            <li>Custom, professional design tailored to your brand</li>
+                            <li>5-10 fully responsive pages (Home, About, Services, Contact, etc.)</li>
+                            <li>Mobile-optimized for perfect display on all devices</li>
+                            <li>Basic SEO setup for search engine visibility</li>
+                            <li>Contact forms and email integration</li>
+                            <li>SSL certificate for security</li>
+                            <li>Speed optimization for fast loading</li>
+                            <li>Content management system (optional)</li>
+                            <li>1 month of post-launch support</li>
+                        </ul>
+
+                        <h4 style="margin-top: 1.5rem; margin-bottom: 1rem;">Best For:</h4>
+                        <ul class="included-list">
+                            <li>Professional services (lawyers, accountants, consultants)</li>
+                            <li>B2B companies and agencies</li>
+                            <li>Local businesses expanding online</li>
+                            <li>Service providers building credibility</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- E-commerce -->
+                <div class="service-detail reveal">
+                    <h3>
+                        <span>E-commerce Solutions</span>
+                    </h3>
+                    <div class="service-content">
+                        <p style="font-size: 1.125rem; margin: 1rem 0;">
+                            Complete online store solutions for businesses ready to sell products online. From product
+                            catalogs to secure checkout, we handle every aspect of your e-commerce operation.
+                        </p>
+
+                        <div style="background: rgba(59, 130, 246, 0.1); padding: 1.5rem; border-radius: 0.5rem; margin: 1.5rem 0;">
+                            <div class="price">$3,500 - $8,000</div>
+                            <p style="color: var(--text-secondary);">Typical project: 6-8 weeks</p>
+                        </div>
+
+                        <h4 style="margin-top: 1.5rem; margin-bottom: 1rem;">What's Included:</h4>
+                        <ul class="included-list">
+                            <li>Custom e-commerce website design</li>
+                            <li>Product catalog with unlimited products</li>
+                            <li>Shopping cart and checkout system</li>
+                            <li>Payment gateway integration (Stripe, PayPal, etc.)</li>
+                            <li>Inventory management system</li>
+                            <li>Order management and tracking</li>
+                            <li>Customer accounts and order history</li>
+                            <li>Shipping calculator integration</li>
+                            <li>Email notifications for orders</li>
+                            <li>Mobile-optimized shopping experience</li>
+                            <li>SSL certificate and PCI compliance</li>
+                            <li>1 month of post-launch support and training</li>
+                        </ul>
+
+                        <h4 style="margin-top: 1.5rem; margin-bottom: 1rem;">Best For:</h4>
+                        <ul class="included-list">
+                            <li>Product-based businesses going online</li>
+                            <li>Existing retailers expanding to e-commerce</li>
+                            <li>Subscription box services</li>
+                            <li>Artists and craftspeople selling online</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Website Modernization -->
+                <div class="service-detail reveal">
+                    <h3>
+                        <span>Website Modernization</span>
+                    </h3>
+                    <div class="service-content">
+                        <p style="font-size: 1.125rem; margin: 1rem 0;">
+                            Breathe new life into your existing website. We transform outdated, underperforming websites
+                            into modern, fast, and effective business tools that drive results.
+                        </p>
+
+                        <div style="background: rgba(59, 130, 246, 0.1); padding: 1.5rem; border-radius: 0.5rem; margin: 1.5rem 0;">
+                            <div class="price">$2,000 - $6,000</div>
+                            <p style="color: var(--text-secondary);">Typical project: 3-5 weeks</p>
+                        </div>
+
+                        <h4 style="margin-top: 1.5rem; margin-bottom: 1rem;">What's Included:</h4>
+                        <ul class="included-list">
+                            <li>Complete design refresh with modern aesthetics</li>
+                            <li>Mobile-responsive redesign</li>
+                            <li>Performance optimization (speed improvements)</li>
+                            <li>Improved user experience and navigation</li>
+                            <li>Updated content structure and layout</li>
+                            <li>SEO improvements and optimization</li>
+                            <li>Security updates and SSL certificate</li>
+                            <li>Content migration from old site</li>
+                            <li>Modern CMS integration</li>
+                            <li>Analytics and tracking setup</li>
+                            <li>1 month of post-launch support</li>
+                        </ul>
+
+                        <h4 style="margin-top: 1.5rem; margin-bottom: 1rem;">Best For:</h4>
+                        <ul class="included-list">
+                            <li>Businesses with websites over 5 years old</li>
+                            <li>Sites that aren't mobile-friendly</li>
+                            <li>Slow-loading websites</li>
+                            <li>Websites not generating leads or sales</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Process -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-lg reveal">
+                <h2>Our Process</h2>
+                <p style="font-size: 1.125rem;">Click each phase to see what happens</p>
+            </div>
+
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div class="accordion-item reveal">
+                    <div class="accordion-header">
+                        <h4>Phase 1: Discovery (1 week)</h4>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>We start by understanding your business, goals, and target audience. This includes:</p>
+                        <ul style="margin-left: 1.5rem; margin-top: 1rem; line-height: 1.8;">
+                            <li>Kickoff call to discuss vision and objectives</li>
+                            <li>Competitor and market research</li>
+                            <li>Review of existing materials and branding</li>
+                            <li>User persona development</li>
+                            <li>Success metrics definition</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="accordion-item reveal">
+                    <div class="accordion-header">
+                        <h4>Phase 2: Strategy & Planning (1 week)</h4>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Based on discovery insights, we create a strategic plan:</p>
+                        <ul style="margin-left: 1.5rem; margin-top: 1rem; line-height: 1.8;">
+                            <li>Site structure and navigation planning</li>
+                            <li>Content strategy and messaging framework</li>
+                            <li>Feature and functionality specifications</li>
+                            <li>Design direction and mood boards</li>
+                            <li>Project timeline and milestone definition</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="accordion-item reveal">
+                    <div class="accordion-header">
+                        <h4>Phase 3: Design (2-3 weeks)</h4>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>We create beautiful, functional designs aligned with your brand:</p>
+                        <ul style="margin-left: 1.5rem; margin-top: 1rem; line-height: 1.8;">
+                            <li>Homepage design concepts for review</li>
+                            <li>Feedback and refinement rounds</li>
+                            <li>Interior page designs</li>
+                            <li>Mobile responsive design variations</li>
+                            <li>Final design approval</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="accordion-item reveal">
+                    <div class="accordion-header">
+                        <h4>Phase 4: Development (2-3 weeks)</h4>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>We bring the designs to life with clean, efficient code:</p>
+                        <ul style="margin-left: 1.5rem; margin-top: 1rem; line-height: 1.8;">
+                            <li>Front-end development and animations</li>
+                            <li>CMS integration and setup</li>
+                            <li>Feature implementation</li>
+                            <li>Content population</li>
+                            <li>Staging site for client review</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="accordion-item reveal">
+                    <div class="accordion-header">
+                        <h4>Phase 5: Testing & Launch (1 week)</h4>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Comprehensive testing ensures a smooth launch:</p>
+                        <ul style="margin-left: 1.5rem; margin-top: 1rem; line-height: 1.8;">
+                            <li>Cross-browser and device testing</li>
+                            <li>Performance optimization</li>
+                            <li>SEO verification</li>
+                            <li>Final client review and approval</li>
+                            <li>Site launch and monitoring</li>
+                            <li>Training and documentation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="section" style="background: rgba(0, 0, 0, 0.2); padding: 4rem 0;">
+        <div class="container">
+            <div class="text-center mb-lg reveal">
+                <h2>Investment & Packages</h2>
+                <p style="font-size: 1.125rem;">Transparent pricing with no hidden fees</p>
+            </div>
+
+            <div class="grid grid-3">
+                <div class="pricing-card reveal">
+                    <h3>Starter</h3>
+                    <div class="price">$2,500</div>
+                    <p style="margin-bottom: 1.5rem;">Perfect for small businesses</p>
+                    <ul style="text-align: left; list-style: none; padding: 0;">
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--glass-border);">✓ 5 pages</li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--glass-border);">✓ Mobile responsive</li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--glass-border);">✓ Basic SEO</li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--glass-border);">✓ Contact form</li>
+                        <li style="padding: 0.5rem 0;">✓ 1 month support</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-secondary" style="width: 100%; margin-top: 1.5rem;">Get Started</a>
+                </div>
+
+                <div class="pricing-card featured reveal">
+                    <div class="badge" style="margin-bottom: 1rem;">Most Popular</div>
+                    <h3>Professional</h3>
+                    <div class="price">$4,500</div>
+                    <p style="margin-bottom: 1.5rem;">For growing businesses</p>
+                    <ul style="text-align: left; list-style: none; padding: 0;">
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--glass-border);">✓ 10 pages</li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--glass-border);">✓ Custom design</li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--glass-border);">✓ Advanced SEO</li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--glass-border);">✓ CMS integration</li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--glass-border);">✓ Analytics setup</li>
+                        <li style="padding: 0.5rem 0;">✓ 2 months support</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-primary" style="width: 100%; margin-top: 1.5rem;">Get Started</a>
+                </div>
+
+                <div class="pricing-card reveal">
+                    <h3>E-commerce</h3>
+                    <div class="price">$6,000+</div>
+                    <p style="margin-bottom: 1.5rem;">Complete online store</p>
+                    <ul style="text-align: left; list-style: none; padding: 0;">
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--glass-border);">✓ Full e-commerce</li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--glass-border);">✓ Payment integration</li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--glass-border);">✓ Inventory system</li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--glass-border);">✓ Product catalog</li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--glass-border);">✓ Order management</li>
+                        <li style="padding: 0.5rem 0;">✓ 3 months support</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-secondary" style="width: 100%; margin-top: 1.5rem;">Get Started</a>
+                </div>
+            </div>
+
+            <div class="text-center mt-lg reveal">
+                <p style="font-size: 1.125rem;">Need custom features? <a href="contact.html" style="font-weight: 600;">Contact us</a> for a personalized quote.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-lg reveal">
+                <h2>Frequently Asked Questions</h2>
+                <p style="font-size: 1.125rem;">Click any question to see the answer</p>
+            </div>
+
+            <div style="max-width: 900px; margin: 0 auto;">
+                <div class="grid grid-2">
+                    <div>
+                        <div class="faq-item reveal">
+                            <div class="faq-question">How much does a website cost?</div>
+                            <div class="faq-answer">
+                                <p>Our projects range from $2,500 to $8,000+ depending on complexity. Business websites start at $2,500, e-commerce at $3,500, and modernization at $2,000. We provide detailed quotes after understanding your needs.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item reveal">
+                            <div class="faq-question">How long does it take?</div>
+                            <div class="faq-answer">
+                                <p>Most projects take 4-8 weeks from start to launch. Simple business sites take 4-6 weeks, while e-commerce projects take 6-8 weeks. We'll provide a detailed timeline during planning.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item reveal">
+                            <div class="faq-question">Do you provide hosting?</div>
+                            <div class="faq-answer">
+                                <p>We can recommend reliable hosting providers and help with setup, or work with your existing hosting. We ensure your site is deployed to a fast, secure server with SSL certificate included.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item reveal">
+                            <div class="faq-question">Will my site be mobile-friendly?</div>
+                            <div class="faq-answer">
+                                <p>Absolutely! All our websites are fully responsive and optimized for mobile devices. With most web traffic coming from phones, mobile optimization is a standard part of every project.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item reveal">
+                            <div class="faq-question">What about ongoing support?</div>
+                            <div class="faq-answer">
+                                <p>All projects include 1-3 months of post-launch support (depending on package). After that, we offer monthly maintenance plans starting at $200/month for updates, backups, and technical support.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item reveal">
+                            <div class="faq-question">Can I update content myself?</div>
+                            <div class="faq-answer">
+                                <p>Yes! We can integrate an easy-to-use content management system (CMS) that lets you update text, images, and pages without coding. We provide training and documentation.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item reveal">
+                            <div class="faq-question">Do you write content?</div>
+                            <div class="faq-answer">
+                                <p>We can help structure and optimize your existing content, but copywriting is not included in standard packages. We work with professional copywriters and can coordinate content creation for an additional fee.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item reveal">
+                            <div class="faq-question">What if I need changes later?</div>
+                            <div class="faq-answer">
+                                <p>We're here for the long term! Minor updates during your support period are included. Larger changes can be handled on an hourly basis or through a retainer agreement.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="faq-item reveal">
+                            <div class="faq-question">Do you do SEO?</div>
+                            <div class="faq-answer">
+                                <p>Basic SEO setup is included in all projects (meta tags, site structure, speed optimization). For ongoing SEO services and content strategy, we can refer you to trusted SEO specialists.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item reveal">
+                            <div class="faq-question">What payment methods do you accept?</div>
+                            <div class="faq-answer">
+                                <p>We accept bank transfers, credit cards, and PayPal. Payment is typically split: 50% to start, 25% at design approval, and 25% at launch.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item reveal">
+                            <div class="faq-question">Do I own the website?</div>
+                            <div class="faq-answer">
+                                <p>Yes! Once final payment is complete, you own all source code, designs, and content. We transfer everything to you and provide all necessary files and credentials.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item reveal">
+                            <div class="faq-question">Can you redesign my existing site?</div>
+                            <div class="faq-answer">
+                                <p>Absolutely! Our Website Modernization service is designed for exactly that. We can refresh your design, improve performance, and add new features while preserving your existing content.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item reveal">
+                            <div class="faq-question">What platform do you use?</div>
+                            <div class="faq-answer">
+                                <p>We recommend platforms based on your needs. Options include WordPress, Shopify (for e-commerce), Webflow, or custom development. We'll discuss the best solution for your goals and budget.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item reveal">
+                            <div class="faq-question">Do you offer rush projects?</div>
+                            <div class="faq-answer">
+                                <p>For urgent needs, we can accelerate timelines with our rush service (20% additional fee). This typically reduces project time by 30-40%, though exact timing depends on scope and availability.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item reveal">
+                            <div class="faq-question">What if I'm not satisfied?</div>
+                            <div class="faq-answer">
+                                <p>We include multiple revision rounds to ensure you're happy. If you're not satisfied after good-faith collaboration, we'll work with you to make it right or provide a partial refund as appropriate.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item reveal">
+                            <div class="faq-question">Do you sign NDAs?</div>
+                            <div class="faq-answer">
+                                <p>Yes, we're happy to sign non-disclosure agreements before discussing sensitive business information. Confidentiality and professionalism are core values of our practice.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section" style="background: rgba(0, 0, 0, 0.3); padding: 4rem 0;">
+        <div class="container">
+            <div class="text-center reveal" style="max-width: 700px; margin: 0 auto;">
+                <h2 class="mb-md">Ready to Get Started?</h2>
+                <p style="font-size: 1.125rem; margin-bottom: 2rem;">
+                    Get a free website analysis and personalized recommendations. No obligations,
+                    just valuable insights to help you make the best decision.
+                </p>
+                <a href="contact.html" class="btn btn-primary" style="font-size: 1.125rem; padding: 1.25rem 2.5rem;">Get Your Free Analysis</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>KOVO DESIGN</h4>
+                    <p>Professional websites that grow your business.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="LinkedIn">in</a>
+                        <a href="#" aria-label="Twitter">𝕏</a>
+                        <a href="#" aria-label="Instagram">ig</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">Business Websites</a></li>
+                        <li><a href="services.html">E-commerce</a></li>
+                        <li><a href="services.html">Website Modernization</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:hello@kovodesign.com">hello@kovodesign.com</a></li>
+                        <li>Monday-Friday</li>
+                        <li>9 AM - 6 PM EST</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 KOVO DESIGN. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

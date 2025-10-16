@@ -1,0 +1,16 @@
+{
+  "name": "kovo-design-website",
+  "version": "1.0.0",
+  "description": "KOVO DESIGN - Professional Website Design Agency",
+  "main": "index.html",
+  "scripts": {
+    "start": "open index.html"
+  },
+  "keywords": [
+    "web design",
+    "agency",
+    "portfolio"
+  ],
+  "author": "KOVO DESIGN",
+  "license": "MIT"
+}

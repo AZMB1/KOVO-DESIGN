@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Get Your Free Website Analysis | KOVO DESIGN</title>
+    <meta name="description" content="Ready to transform your online presence? Contact KOVO DESIGN for a free website analysis and strategic recommendations.">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Contact-specific styles */
+        .form-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .form-section h3 {
+            margin-bottom: var(--spacing-md);
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .required {
+            color: var(--accent-blue);
+        }
+
+        .submit-note {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid var(--accent-blue);
+            border-radius: var(--radius-sm);
+            padding: 1rem;
+            margin-top: var(--spacing-md);
+            text-align: center;
+        }
+
+        .process-step {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto var(--spacing-sm);
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .contact-info-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            text-align: center;
+            transition: all var(--transition-normal);
+        }
+
+        .contact-info-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+        }
+
+        .faq-compact {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+        }
+
+        .faq-compact h4 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-compact p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .error-message {
+            color: #ef4444;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .form-group.error input,
+        .form-group.error textarea,
+        .form-group.error select {
+            border-color: #ef4444;
+        }
+
+        .form-group.error .error-message {
+            display: block;
+        }
+
+        .success-message {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid #22c55e;
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <nav class="container">
+            <div class="logo">KOVO DESIGN</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html" class="btn btn-primary">Get Started</a></li>
+            </ul>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="section" style="padding-top: 150px; text-align: center;">
+        <div class="container">
+            <h1 class="fade-in-up">Contact Us</h1>
+            <h2 class="fade-in-up" style="font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 1rem; animation-delay: 0.1s;">
+                Ready to Transform Your Online Presence?
+            </h2>
+            <p class="fade-in-up" style="font-size: 1.125rem; max-width: 700px; margin: 0 auto; animation-delay: 0.2s; color: var(--text-secondary);">
+                Let's discuss how a professional website can grow your business
+            </p>
+            <div class="fade-in-up" style="margin-top: 1.5rem; animation-delay: 0.3s;">
+                <span class="badge">Get a free website analysis and strategic recommendations</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="section">
+        <div class="container">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div class="success-message" id="successMessage">
+                    <h3 style="color: #22c55e; margin-bottom: 0.5rem;">Thank You!</h3>
+                    <p style="color: var(--text-primary);">We've received your inquiry and will respond within 24 hours with your personalized website analysis.</p>
+                </div>
+
+                <form id="contactForm">
+                    <!-- Section 1: Contact Information -->
+                    <div class="form-section reveal">
+                        <h3>1. Contact Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Your Name <span class="required">*</span></label>
+                                <input type="text" id="name" name="name" required>
+                                <span class="error-message">Please enter your name</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address <span class="required">*</span></label>
+                                <input type="email" id="email" name="email" required>
+                                <span class="error-message">Please enter a valid email</span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone Number (Optional)</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="business">Business Name <span class="required">*</span></label>
+                                <input type="text" id="business" name="business" required>
+                                <span class="error-message">Please enter your business name</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 2: Project Information -->
+                    <div class="form-section reveal">
+                        <h3>2. Project Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="projectType">Project Type <span class="required">*</span></label>
+                                <select id="projectType" name="projectType" required>
+                                    <option value="">Select project type...</option>
+                                    <option value="new-website">New Website</option>
+                                    <option value="ecommerce">E-commerce Store</option>
+                                    <option value="modernization">Website Modernization</option>
+                                    <option value="not-sure">Not Sure Yet</option>
+                                </select>
+                                <span class="error-message">Please select a project type</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="businessType">Business Type <span class="required">*</span></label>
+                                <select id="businessType" name="businessType" required>
+                                    <option value="">Select business type...</option>
+                                    <option value="professional">Professional Services</option>
+                                    <option value="product">Product-based Business</option>
+                                    <option value="local">Local Business</option>
+                                    <option value="online">Online Business</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <span class="error-message">Please select your business type</span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="website">Current Website URL (Optional)</label>
+                                <input type="url" id="website" name="website" placeholder="https://">
+                            </div>
+                            <div class="form-group">
+                                <label for="timeline">Desired Timeline <span class="required">*</span></label>
+                                <select id="timeline" name="timeline" required>
+                                    <option value="">Select timeline...</option>
+                                    <option value="asap">As Soon As Possible</option>
+                                    <option value="1-month">Within 1 Month</option>
+                                    <option value="1-3-months">1-3 Months</option>
+                                    <option value="exploring">Just Exploring</option>
+                                </select>
+                                <span class="error-message">Please select a timeline</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="budget">Budget Range (Optional)</label>
+                            <select id="budget" name="budget">
+                                <option value="">Select budget range...</option>
+                                <option value="under-5k">Under $5,000</option>
+                                <option value="5k-10k">$5,000 - $10,000</option>
+                                <option value="10k-20k">$10,000 - $20,000</option>
+                                <option value="20k-plus">$20,000+</option>
+                                <option value="flexible">Flexible</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Section 3: Project Details -->
+                    <div class="form-section reveal">
+                        <h3>3. Project Details</h3>
+                        <div class="form-group">
+                            <label for="goal">What's your main goal for this website? <span class="required">*</span></label>
+                            <textarea id="goal" name="goal" required placeholder="e.g., Generate more leads, sell products online, establish credibility..."></textarea>
+                            <span class="error-message">Please describe your main goal</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="challenges">What are your current challenges with your online presence? (Optional)</label>
+                            <textarea id="challenges" name="challenges" placeholder="e.g., Outdated design, not mobile-friendly, not ranking in search..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="referral">How did you hear about us? (Optional)</label>
+                            <select id="referral" name="referral">
+                                <option value="">Select option...</option>
+                                <option value="google">Google Search</option>
+                                <option value="social">Social Media</option>
+                                <option value="referral">Referral</option>
+                                <option value="linkedin">LinkedIn</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.125rem; padding: 1.25rem;">
+                        Get Your Free Website Analysis
+                    </button>
+
+                    <div class="submit-note">
+                        <p style="margin: 0; font-size: 0.9rem;"><strong>We'll respond within 24 hours</strong> with your personalized analysis and next steps.</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- What Happens Next -->
+    <section class="section" style="background: rgba(0, 0, 0, 0.2); padding: 4rem 0;">
+        <div class="container">
+            <div class="text-center mb-lg reveal">
+                <h2>What Happens Next</h2>
+                <p style="font-size: 1.125rem;">Our simple 4-step process to get you started</p>
+            </div>
+
+            <div class="grid grid-4">
+                <div class="process-step reveal">
+                    <div class="step-number">1</div>
+                    <h3 style="font-size: 1.125rem;">Response Within 24 Hours</h3>
+                    <p>We'll review your submission and send you a personalized website analysis with initial recommendations.</p>
+                </div>
+
+                <div class="process-step reveal">
+                    <div class="step-number">2</div>
+                    <h3 style="font-size: 1.125rem;">Free Strategy Session</h3>
+                    <p>Schedule a 30-minute consultation to discuss your goals, challenges, and how we can help.</p>
+                </div>
+
+                <div class="process-step reveal">
+                    <div class="step-number">3</div>
+                    <h3 style="font-size: 1.125rem;">Custom Proposal</h3>
+                    <p>Receive a detailed proposal with project scope, timeline, pricing, and our recommended approach.</p>
+                </div>
+
+                <div class="process-step reveal">
+                    <div class="step-number">4</div>
+                    <h3 style="font-size: 1.125rem;">Project Kickoff</h3>
+                    <p>Once approved, we'll schedule your project start date and begin transforming your online presence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Information -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-lg reveal">
+                <h2>Contact Information</h2>
+                <p style="font-size: 1.125rem;">Other ways to reach us</p>
+            </div>
+
+            <div class="grid grid-4">
+                <div class="contact-info-card reveal">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">📧</div>
+                    <h3 style="font-size: 1.125rem;">Email</h3>
+                    <p><a href="mailto:hello@kovodesign.com">hello@kovodesign.com</a></p>
+                </div>
+
+                <div class="contact-info-card reveal">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">⏰</div>
+                    <h3 style="font-size: 1.125rem;">Response Time</h3>
+                    <p>Within 24 hours<br>(business days)</p>
+                </div>
+
+                <div class="contact-info-card reveal">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">💬</div>
+                    <h3 style="font-size: 1.125rem;">Consultation</h3>
+                    <p>Free 30-minute<br>strategy session</p>
+                </div>
+
+                <div class="contact-info-card reveal">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🕐</div>
+                    <h3 style="font-size: 1.125rem;">Office Hours</h3>
+                    <p>Monday-Friday<br>9 AM - 6 PM EST</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick FAQ -->
+    <section class="section" style="background: rgba(0, 0, 0, 0.2); padding: 4rem 0;">
+        <div class="container">
+            <div class="text-center mb-lg reveal">
+                <h2>Quick FAQ</h2>
+                <p style="font-size: 1.125rem;">Common questions answered</p>
+            </div>
+
+            <div class="grid grid-2">
+                <div class="faq-compact reveal">
+                    <h4>How much does a website cost?</h4>
+                    <p>Projects range from $2,500-$8,000+ depending on complexity and features. We'll provide a detailed quote after understanding your needs.</p>
+                </div>
+
+                <div class="faq-compact reveal">
+                    <h4>How long does it take?</h4>
+                    <p>Most projects take 4-8 weeks from start to launch. Simple sites take 4-6 weeks, while e-commerce projects take 6-8 weeks.</p>
+                </div>
+
+                <div class="faq-compact reveal">
+                    <h4>Do you provide hosting?</h4>
+                    <p>We can recommend reliable hosting providers and assist with setup, or work with your existing hosting solution.</p>
+                </div>
+
+                <div class="faq-compact reveal">
+                    <h4>Will my site be mobile-friendly?</h4>
+                    <p>Absolutely! All our websites are fully responsive and optimized for perfect display on phones, tablets, and desktops.</p>
+                </div>
+
+                <div class="faq-compact reveal">
+                    <h4>What about ongoing support?</h4>
+                    <p>All projects include 1-3 months of post-launch support. We also offer monthly maintenance plans starting at $200/month.</p>
+                </div>
+
+                <div class="faq-compact reveal">
+                    <h4>Can I update content myself?</h4>
+                    <p>Yes! We can integrate a user-friendly CMS that lets you update text, images, and pages without any coding knowledge.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center reveal" style="max-width: 700px; margin: 0 auto;">
+                <h2 class="mb-md">Still Have Questions?</h2>
+                <p style="font-size: 1.125rem; margin-bottom: 2rem;">
+                    We're here to help! Reach out via email or check out our full FAQ section on the services page.
+                </p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="mailto:hello@kovodesign.com" class="btn btn-secondary">Email Us</a>
+                    <a href="services.html#faq" class="btn btn-secondary">View All FAQs</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>KOVO DESIGN</h4>
+                    <p>Professional websites that grow your business.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="LinkedIn">in</a>
+                        <a href="#" aria-label="Twitter">𝕏</a>
+                        <a href="#" aria-label="Instagram">ig</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">Business Websites</a></li>
+                        <li><a href="services.html">E-commerce</a></li>
+                        <li><a href="services.html">Website Modernization</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:hello@kovodesign.com">hello@kovodesign.com</a></li>
+                        <li>Monday-Friday</li>
+                        <li>9 AM - 6 PM EST</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 KOVO DESIGN. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
