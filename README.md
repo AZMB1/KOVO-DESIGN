@@ -1,267 +1,386 @@
-# KOVO DESIGN Website
+# KOVO Design
 
-A modern, professional website for KOVO DESIGN - a website design agency specializing in business websites, e-commerce solutions, and website modernization.
+A modern, professional website for KOVO Design — a design studio specializing in custom website design and development.
 
-## Features
+**Live Site:** kovo-design.io (coming soon)  
+**Status:** Development Complete - Ready for Deployment
+
+---
+
+## 🚀 Features
 
 ### Design
-- **Dark Theme**: Modern dark navy/black background with bright blue and purple accents
-- **Glass Morphism**: Translucent frosted glass effect cards throughout
-- **Smooth Animations**: Fade-in effects, scroll reveals, and hover interactions
-- **Fully Responsive**: Perfect display on phones, tablets, and desktop devices
-- **Mobile-First**: Optimized for mobile with hamburger menu navigation
+- **Dark Theme**: Professional dark aesthetic with blue-violet gradient accents
+- **Glass Morphism**: Translucent frosted glass effect cards and surfaces
+- **Smooth Animations**: Hover effects and transitions (Framer Motion ready)
+- **Fully Responsive**: Mobile-first design across all devices
+- **Accessible**: WCAG AA compliant with keyboard navigation support
 
-### Pages
+### Pages (15 Total)
 
-#### 1. Homepage (index.html)
-- Hero section with compelling headline and CTAs
-- 3 floating benefit cards (Fast Delivery, Proven Results, Expert Support)
-- Problem statement section
-- Services overview with pricing
-- Portfolio showcase with 4 featured projects
-- 4-step process overview
-- "Why Choose Us" section with 4 key differentiators
-- Final call-to-action
+#### Core Pages
+- **Home** (`/`) - Hero, services, process, portfolio teaser, testimonials, CTA
+- **Services** (`/services`) - Service breakdown, process timeline, benefits
+- **About** (`/about`) - Philosophy, values, team approach
+- **Pricing** (`/pricing`) - 3 pricing tiers, add-ons, FAQ
+- **FAQ** (`/faq`) - 20+ questions with accordion interface
+- **Contact** (`/contact`) - Full form with validation and Resend integration
+- **404** (`/not-found`) - Custom error page
 
-#### 2. About Page (about.html)
-- Company story and mission
-- Approach & philosophy (4 cards)
-- Technical expertise showcase (8 capabilities)
-- Working together section
-- CTA for free consultation
+#### Portfolio
+- **Portfolio Listing** (`/portfolio`) - 4 featured projects in grid layout
+- **Individual Projects** (4 pages):
+  - TechFlow (`/portfolio/techflow`)
+  - GreenLeaf Market (`/portfolio/greenleaf-market`)
+  - Pulse Fitness (`/portfolio/pulse-fitness`)
+  - DevDocs (`/portfolio/devdocs`)
 
-#### 3. Services Page (services.html)
-- Services overview cards
-- **Interactive Service Details** (click to expand):
-  - Business Website Design ($2,500 - $5,000)
-  - E-commerce Solutions ($3,500 - $8,000)
-  - Website Modernization ($2,000 - $6,000)
-- **5-Phase Process Accordion** (expandable)
-- 3 pricing tiers with package details
-- **15+ FAQ items** (expandable questions)
+#### Legal
+- **Privacy Policy** (`/privacy`)
+- **Terms of Service** (`/terms`)
 
-#### 4. Portfolio Page (portfolio.html)
-- **Filterable Portfolio** (All, Professional Services, E-commerce, Local Business)
-- 4 featured projects with preview cards
-- **Expandable Case Studies** (click to open modal):
-  - Heritage Law Firm (Professional Services)
-  - Artisan Coffee Roasters (E-commerce)
-  - Harmony Wellness Center (Local Business)
-  - InnovateTech Solutions (Professional Services)
-- Each case study includes metrics, challenge, solution, features, and impact
-- Capabilities showcase
+---
 
-#### 5. Contact Page (contact.html)
-- **Multi-Section Contact Form**:
-  - Section 1: Contact Information (name, email, phone, business)
-  - Section 2: Project Information (type, business type, URL, timeline, budget)
-  - Section 3: Project Details (goals, challenges, referral)
-- Form validation with error messages
-- Success message on submission
-- "What Happens Next" 4-step process
-- Contact information grid
-- Quick FAQ (6 questions)
+## 🛠️ Tech Stack
 
-#### 6. 404 Error Page (404.html)
-- Large 404 display with friendly message
-- Helpful links to main pages
-- Contact CTA
+### Core
+- **Next.js 15** - App Router, React Server Components
+- **React 18.3** - UI library
+- **TypeScript 5.6** - Type safety
+- **Tailwind CSS 3.4** - Utility-first styling
 
-### Interactive Features
+### Libraries
+- **Framer Motion 11** - Animation library
+- **React Hook Form 7.53** - Form state management
+- **Zod 3.23** - Schema validation
+- **Resend 4.0** - Email delivery
 
-1. **Mobile Menu**: Hamburger menu that slides in from right
-2. **Scroll Animations**: Elements fade in as you scroll
-3. **Header Effects**: Header background changes on scroll
-4. **Service Accordions**: Expandable service details on Services page
-5. **Process Accordion**: Click to expand each phase
-6. **FAQ Accordion**: Expandable questions with answers
-7. **Portfolio Filter**: Filter projects by category
-8. **Case Study Modals**: Click portfolio items to view detailed case studies
-9. **Form Validation**: Real-time validation with helpful error messages
-10. **Smooth Scrolling**: Smooth scroll to anchor links
+### Dev Tools
+- ESLint 8.57
+- Prettier 3.3
+- TypeScript strict mode
+- PostCSS with Autoprefixer
 
-## File Structure
+---
+
+## 📁 Project Structure
 
 ```
-KOVO Design/
-├── css/
-│   └── styles.css          # Global styles with dark theme and glass effects
-├── js/
-│   └── main.js             # All JavaScript functionality
-├── images/                 # Placeholder for images
-├── index.html              # Homepage
-├── about.html              # About page
-├── services.html           # Services page
-├── portfolio.html          # Portfolio page
-├── contact.html            # Contact page
-├── 404.html                # Error page
-├── package.json            # Project metadata
-└── README.md               # This file
+/
+├── app/                      # Next.js App Router
+│   ├── about/               # About page
+│   ├── api/
+│   │   └── contact/         # Contact form API endpoint
+│   ├── contact/             # Contact page
+│   ├── faq/                 # FAQ page
+│   ├── portfolio/           # Portfolio pages
+│   │   ├── [slug]/          # Dynamic project pages
+│   │   └── page.tsx         # Portfolio listing
+│   ├── pricing/             # Pricing page
+│   ├── privacy/             # Privacy policy
+│   ├── services/            # Services page
+│   ├── sitemap.ts           # Dynamic sitemap
+│   ├── terms/               # Terms of service
+│   ├── globals.css          # Global styles
+│   ├── layout.tsx           # Root layout
+│   ├── not-found.tsx        # 404 page
+│   └── page.tsx             # Home page
+├── components/
+│   ├── forms/               # Form components
+│   ├── layout/              # Header, Footer, MobileMenu
+│   └── ui/                  # Reusable UI components
+├── lib/
+│   ├── data/                # Static data (portfolio)
+│   ├── utils.ts             # Utility functions
+│   └── validations.ts       # Zod schemas
+├── public/
+│   ├── fonts/               # Custom fonts
+│   ├── images/              # Static images
+│   └── robots.txt           # SEO robots file
+├── types/
+│   └── index.ts             # TypeScript types
+└── ...config files
 ```
 
-## Technologies Used
+---
 
-- **HTML5**: Semantic markup
-- **CSS3**: Modern styling with CSS variables, flexbox, and grid
-- **JavaScript (Vanilla)**: No frameworks, pure JavaScript for all interactions
-- **CSS Features**:
-  - CSS Variables for theming
-  - Flexbox and Grid for layouts
-  - CSS Animations and Transitions
-  - Backdrop Filter for glass effects
-  - Media Queries for responsiveness
+## 🚦 Getting Started
 
-## Color Scheme
+### Prerequisites
 
-- **Primary Background**: `#0a0e27` (Dark navy)
-- **Secondary Background**: `#111827` (Dark gray)
-- **Accent Blue**: `#3b82f6`
-- **Accent Purple**: `#8b5cf6`
-- **Text Primary**: `#ffffff` (White)
-- **Text Secondary**: `#9ca3af` (Light gray)
-- **Glass Background**: `rgba(255, 255, 255, 0.05)`
-- **Glass Border**: `rgba(255, 255, 255, 0.1)`
+- Node.js 18+ and npm
+- Git
 
-## Getting Started
+### Installation
 
-### Local Development
+1. **Clone the repository**
+   ```bash
+   git clone <your-repo-url>
+   cd kovo-design
+   ```
 
-1. Clone or download this repository
-2. Open `index.html` in your web browser
-3. No build process required - it's pure HTML, CSS, and JavaScript!
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-### Using a Local Server (Recommended)
+3. **Set up environment variables**
+   
+   Create a `.env.local` file in the root directory:
+   ```env
+   # Resend API Key (for contact form)
+   RESEND_API_KEY=re_your_api_key_here
+   
+   # Contact form recipient email
+   CONTACT_EMAIL=hello@kovo-design.io
+   
+   # Site URL (for metadata)
+   NEXT_PUBLIC_SITE_URL=http://localhost:3002
+   ```
 
-For the best experience, use a local server:
+4. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+
+5. **Open your browser**
+   
+   Navigate to [http://localhost:3002](http://localhost:3002)
+
+---
+
+## 📜 Available Scripts
 
 ```bash
-# Using Python 3
-python -m http.server 8000
+# Start development server (port 3002)
+npm run dev
 
-# Using Node.js http-server
-npx http-server
+# Build for production
+npm run build
 
-# Using PHP
-php -S localhost:8000
+# Start production server
+npm start
+
+# Run ESLint
+npm run lint
+
+# TypeScript type checking
+npm run type-check
 ```
 
-Then open `http://localhost:8000` in your browser.
+---
 
-## Browser Support
+## 🎨 Design System
 
+### Color Palette
+
+```css
+/* Base Colors */
+--bg-primary: #0a0a0a;      /* Deep charcoal */
+--bg-secondary: #141414;    /* Slightly lighter */
+--bg-surface: #1a1a1a;      /* Elevated elements */
+
+/* Accents */
+--accent-primary: #6366f1;  /* Blue-violet */
+--accent-secondary: #8b5cf6;
+--accent-interactive: #06b6d4; /* Cyan */
+
+/* Text */
+--text-heading: #ffffff;
+--text-body: #a1a1aa;
+--text-muted: #71717a;
+```
+
+### Typography
+
+- **Headings**: Space Grotesk (500-700 weight)
+- **Body**: Inter (400-500 weight)
+
+### Breakpoints
+
+- Mobile: 640px
+- Tablet: 768px
+- Desktop: 1024px
+- Large: 1280px
+
+---
+
+## 🧩 Components
+
+### UI Components
+- **Button** - 3 variants (primary, secondary, ghost), loading states
+- **Card** - Glass morphism styling with hover effects
+- **Input** - Text, email, textarea with validation
+- **Select** - Custom dropdown styling
+- **Container** - Responsive wrapper with max-width
+- **Accordion** - Collapsible Q&A component
+
+### Layout Components
+- **Header** - Sticky navigation with mobile menu
+- **Footer** - Multi-column footer with links
+- **MobileMenu** - Full-screen mobile navigation
+
+### Form Components
+- **ContactForm** - Full validation with React Hook Form + Zod
+
+---
+
+## 📧 Contact Form Setup
+
+The contact form requires a Resend API key to send emails.
+
+### Get Resend API Key
+
+1. Sign up at [resend.com](https://resend.com)
+2. Create an API key
+3. Add to `.env.local`:
+   ```env
+   RESEND_API_KEY=re_your_api_key_here
+   CONTACT_EMAIL=your-email@example.com
+   ```
+
+### Form Fields
+
+- Name (required)
+- Email (required, validated)
+- Company (optional)
+- Project Type (dropdown, required)
+- Budget (dropdown, required)
+- Timeline (dropdown, required)
+- Message (required, min 20 characters)
+
+---
+
+## 🚀 Deployment
+
+### Deploy to Vercel (Recommended)
+
+1. **Push to GitHub**
+   ```bash
+   git add .
+   git commit -m "Ready for deployment"
+   git push origin main
+   ```
+
+2. **Connect to Vercel**
+   - Go to [vercel.com](https://vercel.com)
+   - Import your GitHub repository
+   - Configure project settings
+
+3. **Add Environment Variables**
+   
+   In Vercel dashboard, add:
+   ```
+   RESEND_API_KEY=re_your_api_key_here
+   CONTACT_EMAIL=hello@kovo-design.io
+   NEXT_PUBLIC_SITE_URL=https://kovo-design.io
+   ```
+
+4. **Configure Domain**
+   - Add custom domain: `kovo-design.io`
+   - Follow Vercel's DNS setup instructions
+
+5. **Deploy!**
+   - Vercel will automatically deploy on every push to `main`
+
+---
+
+## 🌐 SEO Features
+
+- ✅ Dynamic sitemap (`/sitemap.xml`)
+- ✅ Robots.txt configured
+- ✅ Meta tags on all pages
+- ✅ Semantic HTML structure
+- ⏳ Open Graph images (todo)
+- ⏳ JSON-LD structured data (todo)
+
+---
+
+## ♿ Accessibility
+
+- Semantic HTML5 elements
+- ARIA labels on interactive elements
+- Keyboard navigation support
+- Focus indicators on all interactive elements
+- Color contrast ratios meet WCAG AA standards
+- `prefers-reduced-motion` support (ready for animations)
+
+---
+
+## 🧪 Testing
+
+### Browser Support
 - Chrome (latest)
 - Firefox (latest)
 - Safari (latest)
 - Edge (latest)
-- Mobile browsers (iOS Safari, Chrome Mobile)
+- Mobile Safari (iOS 14+)
+- Chrome Mobile (latest)
 
-## Customization
-
-### Changing Colors
-
-Edit the CSS variables in `css/styles.css`:
-
-```css
-:root {
-  --bg-primary: #0a0e27;
-  --accent-blue: #3b82f6;
-  --accent-purple: #8b5cf6;
-  /* ... more variables */
-}
-```
-
-### Adding Content
-
-- **Images**: Add images to the `images/` folder and update `src` attributes
-- **Text**: Edit HTML files directly
-- **Services**: Update pricing and details in `services.html`
-- **Portfolio**: Add new projects in `portfolio.html` and create corresponding modals
-
-### Form Integration
-
-The contact form currently displays a success message. To integrate with a backend:
-
-1. Update the form submission handler in `js/main.js`
-2. Send data to your server endpoint
-3. Or integrate with a service like Formspree, Netlify Forms, or EmailJS
-
-Example with Fetch API:
-
-```javascript
-fetch('/api/contact', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data)
-})
-.then(response => response.json())
-.then(data => {
-    // Handle success
-});
-```
-
-## Performance
-
-- Lightweight: No external libraries or frameworks
-- Fast loading: Minimal CSS and JavaScript
-- Optimized animations: Hardware-accelerated transforms
-- Lazy loading ready: Add `loading="lazy"` to images when added
-
-## SEO
-
-- Semantic HTML5 elements
-- Meta descriptions on all pages
-- Proper heading hierarchy
-- Alt text ready for images
-- Fast page load times
-
-## Accessibility
-
-- Semantic HTML
-- Proper heading structure
-- ARIA labels for interactive elements
-- Keyboard navigation support
-- Focus states on interactive elements
-- Sufficient color contrast
-
-## Future Enhancements
-
-Potential improvements to consider:
-
-1. Add actual project images to portfolio
-2. Integrate contact form with backend/email service
-3. Add blog section for content marketing
-4. Implement analytics (Google Analytics, Plausible, etc.)
-5. Add testimonials slider
-6. Integrate with CMS (WordPress, Contentful, etc.)
-7. Add loading animations
-8. Implement image optimization
-9. Add cookie consent banner if needed
-10. Set up automated deployment (Netlify, Vercel, etc.)
-
-## Deployment
-
-This site can be deployed to any static hosting service:
-
-- **Netlify**: Drag and drop the folder
-- **Vercel**: Connect Git repository or upload
-- **GitHub Pages**: Push to GitHub and enable Pages
-- **Cloudflare Pages**: Connect repository
-- **Traditional hosting**: Upload via FTP
-
-## Credits
-
-Created for KOVO DESIGN - Professional websites that grow your business.
-
-## License
-
-MIT License - Feel free to use this template for your own projects.
-
-## Support
-
-For questions or issues:
-- Email: hello@kovodesign.com
-- Office Hours: Monday-Friday, 9 AM - 6 PM EST
+### Manual Testing Checklist
+- [ ] All navigation links work
+- [ ] Contact form submits successfully
+- [ ] Form validation displays errors correctly
+- [ ] Mobile menu opens/closes properly
+- [ ] All pages responsive on mobile/tablet/desktop
+- [ ] Images load properly
+- [ ] 404 page displays for invalid routes
 
 ---
 
-**© 2025 KOVO DESIGN. All rights reserved.**
+## 📝 Content Guidelines
+
+### Tone of Voice
+- Professional but human
+- Clear and direct
+- Confident without arrogance
+- Benefit-focused, not feature-focused
+
+### Restrictions
+- ❌ No fake metrics ("500+ projects")
+- ❌ No made-up testimonials
+- ❌ No emojis (unless contextually appropriate)
+- ❌ No buzzwords or jargon
+
+---
+
+## 📚 Documentation
+
+- **PRD.md** - Complete product requirements document
+- **CLAUDE.md** - Project context for AI assistants
+- **TODO.md** - Development task tracking
+- **SUMMARY.md** - Project completion summary
+- **README.md** - This file
+
+---
+
+## 🔮 Future Enhancements
+
+- [ ] Framer Motion page transitions
+- [ ] Blog/Insights section
+- [ ] CMS integration (Sanity/Contentful)
+- [ ] Real client testimonials
+- [ ] Real case studies
+- [ ] Newsletter signup
+- [ ] Live chat widget
+- [ ] Project calculator
+- [ ] Dark/light mode toggle
+
+---
+
+## 📄 License
+
+MIT License - Feel free to use this as a template for your projects.
+
+---
+
+## 📞 Support
+
+**Email:** hello@kovo-design.io  
+**Website:** kovo-design.io
+
+---
+
+**© 2025 KOVO Design. All rights reserved.**
+
+Built with ❤️ using Next.js, TypeScript, and Tailwind CSS.
