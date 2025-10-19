@@ -25,22 +25,36 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ) => {
     const Comp = asChild ? Slot : 'button'
 
+    const buttonClasses = cn(
+      'inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all duration-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+      {
+        'bg-gradient-to-r from-accent-primary to-accent-secondary text-white hover:shadow-lg hover:shadow-accent-primary/50':
+          variant === 'primary',
+        'glass-card text-text-heading hover:border-accent-interactive/50':
+          variant === 'secondary',
+        'text-text-heading hover:bg-white/5': variant === 'ghost',
+        'px-4 py-2 text-sm': size === 'small',
+        'px-6 py-3 text-base': size === 'medium',
+        'px-8 py-4 text-lg': size === 'large',
+      },
+      className
+    )
+
+    if (asChild) {
+      return (
+        <Slot
+          className={buttonClasses}
+          ref={ref}
+          {...props}
+        >
+          {children}
+        </Slot>
+      )
+    }
+
     return (
-      <Comp
-        className={cn(
-          'inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all duration-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
-          {
-            'bg-gradient-to-r from-accent-primary to-accent-secondary text-white hover:shadow-lg hover:shadow-accent-primary/50':
-              variant === 'primary',
-            'glass-card text-text-heading hover:border-accent-interactive/50':
-              variant === 'secondary',
-            'text-text-heading hover:bg-white/5': variant === 'ghost',
-            'px-4 py-2 text-sm': size === 'small',
-            'px-6 py-3 text-base': size === 'medium',
-            'px-8 py-4 text-lg': size === 'large',
-          },
-          className
-        )}
+      <button
+        className={buttonClasses}
         ref={ref}
         disabled={disabled || loading}
         {...props}
@@ -68,7 +82,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           </svg>
         )}
         {children}
-      </Comp>
+      </button>
     )
   }
 )

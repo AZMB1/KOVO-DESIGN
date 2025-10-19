@@ -1,12 +1,12 @@
 import { forwardRef, TextareaHTMLAttributes } from 'react'
 import { cn } from '@/lib/utils'
 
-export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextareaElement> {
+export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   label?: string
   error?: string
 }
 
-const Textarea = forwardRef<HTMLTextareaElement, TextareaProps>(
+const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   ({ className, label, error, ...props }, ref) => {
     return (
       <div className="space-y-2">

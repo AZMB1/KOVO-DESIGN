@@ -167,7 +167,7 @@ export default function PricingPage() {
                   ))}
                 </ul>
                 <Button
-                  variant={tier.popular ? "default" : "secondary"}
+                  variant={tier.popular ? "primary" : "secondary"}
                   className="w-full"
                   asChild
                 >
