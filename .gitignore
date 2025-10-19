@@ -49,3 +49,17 @@ npm-debug.log*
 .env.development.local
 .env.test.local
 .env.production.local
+
+# Next.js
+.next/
+out/
+dist/
+build/
+
+# Dependencies
+node_modules/
+package-lock.json
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts

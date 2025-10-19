@@ -1,0 +1,10 @@
+# robots.txt for kovo-design.io
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://kovo-design.io/sitemap.xml
+
+# Disallow admin or API routes (if any in future)
+# Disallow: /api/
